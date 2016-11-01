@@ -1,0 +1,3 @@
+[submodule "twit"]
+	path = twit
+	url = https://github.com/gtomitsuka/twit.git
