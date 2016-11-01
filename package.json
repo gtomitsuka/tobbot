@@ -1,0 +1,32 @@
+{
+  "name": "tobbot",
+  "version": "1.0.0",
+  "description": "Twitter AI bot, for research purposes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gtomitsuka/tobbot.git"
+  },
+  "keywords": [
+    "robot",
+    "api",
+    "twitter",
+    "ai",
+    "machine",
+    "learning",
+    "bot",
+    "communication"
+  ],
+  "author": "Gabriel Tomitsuka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gtomitsuka/tobbot/issues"
+  },
+  "homepage": "https://github.com/gtomitsuka/tobbot#readme",
+  "dependencies": {
+    "google-cloud": "^0.43.0"
+  }
+}
