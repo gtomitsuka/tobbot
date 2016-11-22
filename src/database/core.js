@@ -41,7 +41,27 @@ function addResponse(id, content, created) {
     });
 }
 
+/*
+    database.fetchLastSavedMessage()
+    last message ist required for not querying messages twice.
+    also used to verify whether system is functioning.
+
+    returns date, when last message was created
+ */
+function queryLastSavedMessage() {
+    var query = datastore.createQuery('Message');
+    query.order('created', {
+        descending: true
+    });
+    query.limit(1);
+
+    return datastore.runQuery(query).then((results) => {
+        return results[0].created;
+    });
+}
+
 module.exports = {
     addDirectMessage,
-    addResponse
+    addResponse,
+    queryLastSavedMessage
 }
