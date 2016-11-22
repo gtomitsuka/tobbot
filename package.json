@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/gtomitsuka/tobbot#readme",
   "dependencies": {
+    "async": "^2.1.2",
     "google-cloud": "^0.43.0",
     "twit": "^2.2.5"
   }
