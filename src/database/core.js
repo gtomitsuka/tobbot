@@ -1,41 +1,47 @@
 /* connect to Google Cloud Datastore */
 
 var config = require('../../config');
+
+//external apis
 var Datastore = require('@google-cloud/datastore');
 
 // Instantiate a datastore client
 var datastore = Datastore(config.google);
 
-function addTask(description, callback) {
-    var taskKey = datastore.key('Task');
+/*
+ database.addDirectMessage(id, senderId, senderName, content, created)
+ database.addResponse(id, content, created)
+*/
 
-    datastore.save({
-        key: taskKey,
-        data: [{
-            name: 'created',
-            value: new Date().toJSON()
-        }, {
-            name: 'description',
-            value: description,
-            excludeFromIndexes: true
-        }, {
-            name: 'done',
-            value: false
-        }]
-    }, function (err) {
-        if (err) {
-            return callback(err);
+function addDirectMessage(id, senderId, senderName, content, created) {
+    var messageKey = datastore.key('Message');
+
+    return datastore.save({
+        key: messageKey,
+        data: {
+            id,
+            content,
+            senderId,
+            senderName,
+            created
         }
-
-        var taskId = taskKey.path.pop();
-        console.log('Task %d created successfully.', taskId);
-        return callback(null, taskKey);
     });
 }
 
-addTask('description', function (err) {
-    if (err) {
-        throw err;
-    }
-    console.log('success');
-});
+function addResponse(id, content, created) {
+    var responseKey = datastore.key('Response');
+
+    return datastore.save({
+        key: responseKey,
+        data: {
+            id,
+            content,
+            created
+        }
+    });
+}
+
+module.exports = {
+    addDirectMessage,
+    addResponse
+}
