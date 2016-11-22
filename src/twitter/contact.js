@@ -1,5 +1,5 @@
 var twit = require('twit');
-var config = require('../config');
+var config = require('../../config');
 
 var T = new twit(config.twit);
 
@@ -17,8 +17,10 @@ function connect() {
 
 function fetchDirectMessages(since) {
     return T.get('direct_messages', {
-        since_id: since,
-        max_id: 200
+        since_id: since
+            //   max_id: 200 - WARNING: BREAKS CODE!
+    }).then((result) => {
+        return result.data;
     })
 }
 
