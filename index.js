@@ -1,9 +1,9 @@
 // index.js
 
 //internal frameworks
-var twitter = require('./src/twitter-contact');
+var twitter = require('./src/twitter/contact');
 var database = require('./src/database/core');
-var messageManager = require('./src/manage-messages')
+var messageManager = require('./src/twitter/manage-messages')
 
 console.log('starting up...');
 
@@ -15,8 +15,8 @@ twitter.connect().then(() => {
 }).then((date) => {
     console.log('successfully connected to database, last saved message dates to ' + date)
 
-    messageManager.processMessages();
-
+    return messageManager.processMessages();
+}).then(() => {
     console.info('successful startup.');
 }).catch(function (err) {
     console.error('caught error: ', err.stack);
