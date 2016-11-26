@@ -1,0 +1,18 @@
+{
+    "twit": {
+        "consumer_key": "",
+        "consumer_secret": "",
+        "access_token": "",
+        "access_token_secret": "",
+        "timeout_ms": 60000
+    },
+    "google": {
+        "projectId": "",
+        "credentials": {
+            "private_key_id": "",
+            "private_key": "",
+            "client_email": "",
+            "client_id": ""
+        }
+    }
+}
