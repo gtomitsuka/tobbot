@@ -3,6 +3,10 @@
 var config = require('../../config');
 
 //external apis
+
+// internal tip
+// use https://googlecloudplatform.github.io/google-cloud-node/#/docs/datastore/0.5.1/datastore
+// as documentation
 var Datastore = require('@google-cloud/datastore');
 
 // Instantiate a datastore client
@@ -19,11 +23,11 @@ function addDirectMessage(id, senderId, senderName, content, created) {
     return datastore.save({
         key: messageKey,
         data: {
-            id,
+            twitter_id: id,
             content,
             senderId,
             senderName,
-            created
+            created: new Date(created)
         }
     });
 }
@@ -56,7 +60,9 @@ function queryLastSavedMessage() {
     query.limit(1);
 
     return datastore.runQuery(query).then((results) => {
-        return results[0].created;
+        if (results[0].length === 0)
+            return
+        return results[0][0].twitter_id;
     });
 }
 
